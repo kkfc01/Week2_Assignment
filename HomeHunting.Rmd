@@ -1,0 +1,40 @@
+---
+title: "Home Hunting"
+author: "KC"
+date: "7 January 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Saturday 07 Jan 2017
+
+```{r}
+library(leaflet)
+
+Sat0701 <- data.frame(price = c(1240, 2500, 1290, 1700,1000),
+                      size = c(348, 520, 355, 400, 220),
+                      lat = c(-33.946498, -33.955654, -33.966102, -33.957842, -33.956545),
+                      lng = c(151.033346, 151.103441, 151.003698, 151.045881, 151.089851))
+
+Sat0701_Sites <- c("<a href='http://www.domain.com.au/2013172860'>Arab Road, Padstow</a>",
+                   "<a href='http://www.domain.com.au/2013210041'>Wellington Road, Hurstville</a>",
+                   "<a href='http://www.domain.com.au/2013233212'>Ramsey Road, Picnic Point</a>",
+                   "<a href='http://www.domain.com.au/2013253060'>Clarke Street, Peakhurst</a>",
+                   "<a href=''>Hurstville</a>"
+                   )
+
+# my_map <- leaflet() %>%
+#   addTiles() %>%
+#   addMarkers(lat=-33.946498, lng=151.033346, popup="Padstow")
+# my_map
+
+Sat0701 %>%
+  leaflet() %>%
+  addTiles() %>%
+  addCircles(weight = 5, radius = Sat0701$price/Sat0701$size*10^2, popup = Sat0701_Sites)
+#  addMarkers(popup = Sat0701_Sites)
+
+```
